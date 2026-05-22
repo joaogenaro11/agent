@@ -9,6 +9,8 @@
     "lint": "next lint",
     "worker": "tsx worker/index.ts",
     "tick:once": "tsx worker/run-tick.ts",
+    "setup": "bash scripts/setup.sh",
+    "start:all": "bash scripts/dev.sh",
     "test": "vitest run",
     "test:watch": "vitest",
     "db:migrate": "prisma migrate dev",

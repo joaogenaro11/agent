@@ -86,7 +86,19 @@ PostgreSQL · Prisma · pg-boss · OpenAI · Twilio · Zod · Luxon · Vitest.
 - Node.js 20+
 - PostgreSQL 14+
 
-### Passos
+### Atalho (recomendado)
+
+Com **Docker** instalado, dois comandos resolvem tudo:
+
+```bash
+npm run setup       # instala deps, sobe o Postgres, migrations e seed
+npm run start:all   # sobe o painel web + o worker juntos
+```
+
+O painel abre em http://localhost:3000. Para usar a IA e o Twilio reais, edite
+`.env.local` (criado pelo `setup`) antes do `start:all`.
+
+### Passos manuais
 
 ```bash
 # 1. Instalar dependências
@@ -96,14 +108,17 @@ npm install
 cp .env.example .env.local
 #   edite .env.local: DATABASE_URL e, opcionalmente, OPENAI_API_KEY / Twilio
 
-# 3. Banco: aplicar migrations e popular o seed
+# 3. Banco: subir o Postgres (Docker) — ou use um PostgreSQL próprio
+docker compose up -d
+
+# 4. Aplicar migrations e popular o seed
 npm run db:deploy
 npm run db:seed
 
-# 4. Subir a aplicação web
+# 5. Subir a aplicação web
 npm run dev          # http://localhost:3000
 
-# 5. Em outro terminal, subir o worker do scheduler
+# 6. Em outro terminal, subir o worker do scheduler
 npm run worker
 ```
 
